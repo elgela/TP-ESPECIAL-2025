@@ -1,11 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- para que funcione el responsive -->
+    <link rel="stylesheet" href="style.css">
     <title>TPE 2025</title>
 </head>
+
 <body>
-    
+    <header>
+        <picture>
+            <img src="./images/logo.png" alt="logo de comida y bazar">
+        </picture>
+        <search>Buscar:
+            <input type="search" name="buscar" id="search" placeholder="Buscar..."><button type="submit">Enviar</button>
+        </search>
+        <h1>Almacén && Bazar</h1>
+        <h2>(Comestibles || Productos)</h2>
+    </header>
+    <nav class="navigation">
+        <ul>
+            <li>Inicio</li>
+            <li>Almacén</li>
+            <li>Bazar</li>
+            <li>Contacto</li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h4>Ingresar</h4>
+            <form action="login" method="post"> <!--action es a la URL donde se envían los datos-->
+                <label for="usuario">Usuario: </label>
+                <input type="text" name="usuario" placeholder="Usuario" id="">
+                <label for="password">Contraseña: </label>
+                <input type="password" name="password" placeholder="Contraseña" id="">
+
+                <button type="submit">Ingresar</button>
+            </form>
+        </section>
+        <section>
+            <h4>Registro</h4>
+            <form action="register" method="post">
+                <label for="nombre">Nombre: </label>
+                <input type="text" name="nombre" placeholder="Nombre" id="">
+                <label for="apellido">Apellido: </label>
+                <input type="text" name="apellido" placeholder="Apellido" id="">
+                <label for="genero">Sexo:
+                    <input type="checkbox" name="genero" value="Masculino" id="">Masculino
+                    <input type="checkbox" name="genero" value="Femenino" id="">Femenino
+                </label>
+                <button type="submit">Registrarse</button>
+            </form>
+        </section>
+
+        <section>
+            <article>
+                <h3>Duraznos en almibar</h3>
+                <img src="./images/duraznos.png" alt="duraznos en almibar">
+            </article>
+        </section>
+    </main>
+    <footer>
+        <img src="./images/logo.png" alt="logo de comida y bazar">
+        <ul>
+            <li>Almacén</li>
+            <li>Bazar</li>
+            <li>Contacto</li>
+        </ul>
+    </footer>
 </body>
+
 </html>
