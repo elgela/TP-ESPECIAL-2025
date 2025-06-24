@@ -3,72 +3,119 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- para que funcione el responsive -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
     <title>TPE 2025</title>
 </head>
 
 <body>
     <header>
-        <picture>
-            <img src="./images/logo.png" alt="logo de comida y bazar">
+        <picture class="logo">
+            <a href="index.html"><img src="./images/logo.png" alt="logo de comida y bazar"></a>
         </picture>
-        <search>Buscar:
+        <search class="search">Buscar:
             <input type="search" name="buscar" id="search" placeholder="Buscar..."><button type="submit">Enviar</button>
         </search>
-        <h1>Almacén && Bazar</h1>
-        <h2>(Comestibles || Productos)</h2>
     </header>
+
     <nav class="navigation">
-        <ul>
-            <li>Inicio</li>
-            <li>Almacén</li>
-            <li>Bazar</li>
-            <li>Contacto</li>
+        <button class="btn-menu">Menú</button>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="almacen.html">Almacén</a></li>
+            <li><a href="bazar.html">Bazar</a></li>
         </ul>
     </nav>
-    <main>
-        <section>
-            <h4>Ingresar</h4>
-            <form action="login" method="post"> <!--action es a la URL donde se envían los datos-->
-                <label for="usuario">Usuario: </label>
-                <input type="text" name="usuario" placeholder="Usuario" id="">
-                <label for="password">Contraseña: </label>
-                <input type="password" name="password" placeholder="Contraseña" id="">
 
-                <button type="submit">Ingresar</button>
-            </form>
-        </section>
-        <section>
-            <h4>Registro</h4>
-            <form action="register" method="post">
-                <label for="nombre">Nombre: </label>
-                <input type="text" name="nombre" placeholder="Nombre" id="">
-                <label for="apellido">Apellido: </label>
-                <input type="text" name="apellido" placeholder="Apellido" id="">
-                <label for="genero">Sexo:
-                    <input type="checkbox" name="genero" value="Masculino" id="">Masculino
-                    <input type="checkbox" name="genero" value="Femenino" id="">Femenino
-                </label>
-                <button type="submit">Registrarse</button>
-            </form>
-        </section>
-
-        <section>
-            <article>
-                <h3>Duraznos en almibar</h3>
-                <img src="./images/duraznos.png" alt="duraznos en almibar">
+    <main class="content">
+        <h1 class="titulo">BAZAAR</h1>
+        <h2 class="subtitulo">Almacén && Bazar</h2>
+        <h3 class="subtitulo">(Comestibles || Productos)</h3>
+        <article id="login-muestras">
+            <h2>Muestras</h2>
+            <article class="muestras">
+                <section>
+                    <time datetime="16/05/2025"></time>
+                    <h3>Duraznos</h3>
+                    <img onclick="this.requestFullscreen()" src="./images/duraznos.png" alt="duraznos en almibar">
+                </section>
+                <section>
+                    <h3>Pizzas</h3>
+                    <img onclick="this.requestFullscreen()" src="./images/pizzas.jpeg" alt="pizzas">
+                    <time datetime="16/05/2025"></time>
+                </section>
+                <section>
+                    <h3>Aro led</h3>
+                    <img onclick="this.requestFullscreen()" src="./images/aro_luz.jpeg" alt="aro de luz">
+                    <time datetime="17/05/2025"></time>
+                </section>
             </article>
-        </section>
+            <aside class="login">
+                <h4>Ingresar</h4>
+                <form action="" method="post" id="form"> <!--action es a la URL donde se envían los datos-->
+                    <div>
+                        <label for="usuario">Usuario: </label>
+                        <input type="text" name="usuario" placeholder="Usuario" required>
+                    </div>
+                    <div>
+                        <label for="password">Contraseña: </label>
+                        <input type="password" name="password" placeholder="Contraseña" minlength="6" maxlength="10" required>
+                    </div>
+                    <div>
+                        <label for="captcha">Ingrese captcha <span id="referencia"></span></label>
+                        <input type="text" name="captcha" id="captcha">
+                    </div>
+                    <button type="submit" id="btn-ingreso">Ingresar</button>
+                </form>
+                <h3 id="aviso"></h3>
+            </aside>
+        </article>
+        <article>
+            <section id="registro">
+                <h4>Registrese</h4>
+                <form action="" method="post" id="form-registro">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+                    </div>
+                    <div>
+                        <label for="apellido">Apellido</label>
+                        <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono</label>
+                        <input type="number" name="telefono" id="telefono" placeholder="Teléfono">
+                    </div>
+                    <div>
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad">
+                    </div>
+                    <div>
+                        <label for="usuario">Elija nombre usuario</label>
+                        <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
+                    </div>
+                    <div>
+                        <label for="password">Elija contraseña</label>
+                        <input type="text" name="password" id="password" placeholder="Contraseña" required>
+                    </div>
+                    <button type="submit" id="btn-registro">Registrar</button>
+                </form>
+            </section>
+        </article>
     </main>
+
     <footer>
-        <img src="./images/logo.png" alt="logo de comida y bazar">
+        <a href="index.html"><img src="./images/logo.png" alt="logo de comida y bazar" class="logo"></a>
         <ul>
-            <li>Almacén</li>
-            <li>Bazar</li>
-            <li>Contacto</li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="almacen.html">Almacén</a></li>
+            <li><a href="bazar.html">Bazar</a></li>
         </ul>
+        <p>Bazaar&#169 2025</p>
     </footer>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,351 @@
+body {
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: antiquewhite;
+}
+
+.logo {
+    display: flex;
+    background-color: rgb(249, 198, 116);
+    justify-content: center;
+}
+
+.logo img {
+    height: 7rem;
+    width: auto;
+    border-radius: 50%;
+}
+
+.btn-menu {
+    display: flex;
+    cursor: pointer;
+}
+
+.menu {
+    display: none;
+    background-color: rgb(249, 198, 116);
+    width: 200px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 30px 15px 5px 15px;
+}
+
+.show {
+    display: block;
+}
+
+.navigation ul li {
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: brown;
+    font-weight: bold;
+}
+
+/*************fin header*************/
+
+.content {
+    margin: 50px;
+    background-color: rgb(242, 169, 143);
+}
+
+.titulo,
+.subtitulo {
+    text-align: center;
+    margin: 0;
+    color: brown;
+    font-size: x-large;
+}
+
+#login-muestras>h2 {
+    /* h2 hijo directo de #login-muestras */
+    font-size: large;
+    text-align: center;
+    color: brown;
+    margin: 50px 0 -30px 0;
+}
+
+.muestras {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.muestras img {
+    width: 100%;
+    height: auto;
+}
+
+.muestras h3 {
+    font-size: small;
+    text-align: center;
+    background-color: rgb(249, 198, 116);
+}
+
+#descuentos-promo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.promo img {
+    width: 100%;
+}
+
+.descuentos {
+    display: grid;
+    width: 100%;
+}
+
+.descuentos h3,
+.promo h3,
+.carrito h3,
+.productos h3 {
+    color: cadetblue;
+    text-align: center;
+}
+
+.login {
+    padding: 20px;
+    text-align: center;
+}
+
+#btn-ingreso,
+#btn-registro {
+    margin-top: 5px;
+    cursor: none;
+}
+
+.btn-agregar,
+.btn-modif,
+.btn-delete {
+    width: 60px;
+    cursor: none;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+th {
+    background-color: green;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+td {
+    border-bottom: 1px solid black;
+}
+
+.categorias-destacado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categorias {
+    display: flex;
+}
+
+.categorias ul li a {
+    color: brown;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.destacado {
+    display: flex;
+    flex-direction: column;
+}
+
+.destacado>h2 {
+    text-align: center;
+}
+
+.destacado article img {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 15px;
+}
+
+.imagenes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/***********fin content*****************/
+
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(249, 198, 116);
+}
+
+footer img {
+    width: 45px;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+footer ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer ul li a {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+footer p {
+    text-align: right;
+    color: rgb(48, 46, 43);
+    margin-right: 20px;
+}
+
+@media (width > 768px) {
+    body {
+        margin: 0;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .logo {
+        background-color: darkslategrey;
+    }
+
+    .logo img {
+        height: 9rem;
+    }
+
+    .btn-menu {
+        display: none;
+    }
+
+    .menu {
+        background-color: rgb(102, 149, 149);
+        width: 100%;
+        padding: 5px 0;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .navigation ul {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .navigation ul li {
+        margin-bottom: 0;
+    }
+
+    .search {
+        display: flex;
+    }
+
+    /****************fin header***********************/
+
+    .titulo,
+    .subtitulo {
+        font-size: xx-large;
+    }
+
+    #login-muestras {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #login-muestras>h2 {
+        display: none;
+    }
+
+    .muestras {
+        margin-top: 0;
+        flex-direction: row;
+    }
+
+    .muestras section {
+        margin: 10px;
+    }
+
+    .muestras img {
+        cursor: pointer;
+        margin: 0;
+        height: 60%;
+    }
+
+    #descuentos-promo {
+        /* width: 100%; */
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .btn-agregar,
+    .btn-modif,
+    .btn-delete {
+        cursor: pointer;
+    }
+
+    #btn-ingreso,
+    #btn-registro {
+        cursor: pointer;
+    }
+
+    .descuentos,
+    .carrito {
+        /* margin: 20px; */
+        display: grid;
+        justify-content: center;
+    }
+
+    .promo img {
+        width: 10rem;
+        justify-content: center;
+        align-items: center;
+        margin: 0 60px;
+    }
+
+    .categorias-destacado {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .destacado article img {
+        width: 50%;
+    }
+
+    .imagenes {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 400px;
+    }
+
+    table {
+        width: 400px;
+        margin: 10px;
+    }
+
+    #tabla-productos {
+        width: 100%;
+        margin: 0;
+    }
+
+    /***********fin content*****************/
+
+    footer {
+        background-color: darkslategrey;
+    }
+
+    footer img {
+        width: 70px;
+    }
+
+}
