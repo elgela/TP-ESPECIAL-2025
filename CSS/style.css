@@ -100,6 +100,10 @@ body {
     width: 100%;
 }
 
+#registro {
+    margin: 10px;
+}
+
 .descuentos h3,
 .promo h3,
 .carrito h3,
@@ -114,16 +118,23 @@ body {
 }
 
 #btn-ingreso,
-#btn-registro {
-    margin-top: 5px;
+#btn-registro,
+#btn-elimina,
+#btn-cambioUsuario,
+#btn-cambioPass,
+#btn-cambioTel,
+#btn-cambiar,
+#btn-enviarPass {
+    margin: 5px;
     cursor: none;
 }
 
 .btn-agregar,
 .btn-modif,
 .btn-delete {
-    width: 60px;
+    width: auto;
     cursor: none;
+    padding: 0;
 }
 
 table {
@@ -294,7 +305,13 @@ footer p {
     }
 
     #btn-ingreso,
-    #btn-registro {
+    #btn-registro,
+    #btn-elimina,
+    #btn-cambioUsuario,
+    #btn-cambioPass,
+    #btn-cambioTel,
+    #btn-cambiar,
+    #btn-enviarPass {
         cursor: pointer;
     }
 

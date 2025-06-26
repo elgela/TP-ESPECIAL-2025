@@ -12,17 +12,17 @@ function toggleMenu() {
 
 function registroFormulario(e) {
     e.preventDefault();
-    
+
     // para agarrar todos los datos
     let formData = new FormData(form);
-    
+
     let usuario = formData.get('usuario');
     let password = formData.get('password');
     let captcha = formData.get('captcha');
     let referencia = document.querySelector("#referencia").innerHTML;
     let aviso = document.querySelector("#aviso");
     console.log(usuario, password, captcha);
-    
+
     if (referencia == captcha) {
         aviso.innerHTML = "el captcha es correcto";
     } else {
@@ -68,6 +68,8 @@ async function obtenerDatos() {
                                 <td>${cantidad}</td>
                                 <td>${producto}</td>
                                 <td>${precio}</td>
+                                <td><button style="cursor:pointer">Modificar</button</td>
+                                <td><button style="cursor:pointer">Eliminar</button></td>
                                 </tr>`;
         }
     } catch (error) {
@@ -96,7 +98,7 @@ async function agregarProductos(e) {
     try {
         let res = await fetch(urlProductos, {
             method: "POST",
-            headers: {"Content-type": "application/json"},
+            headers: { "Content-type": "application/json" },
             body: JSON.stringify(nuevoProducto)
         })
         let json = await res.json();
@@ -105,7 +107,7 @@ async function agregarProductos(e) {
         obtenerDatos();
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
@@ -141,30 +143,72 @@ async function registrarse(e) {
     try {
         let res = await fetch(urlUsuario, {
             "method": "POST",
-            "headers": {"Content-type": "application/json"},
+            "headers": { "Content-type": "application/json" },
             "body": JSON.stringify(usuarios)
         });
         let json = await res.json();
         console.log(json);
-        
-        if (res.status === 201) 
+        let idUsuario = json.id;
+
+        contenedor.innerHTML = "Tu ID de usuario es: " + idUsuario;
+
+        if (res.status === 201)
             console.log(nombre + " " + apellido + " " + " ha quedado registrado/a!");
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
 let formRegistro = document.querySelector("#form-registro");
-formRegistro.addEventListener('submit', registrarse);
+if (formRegistro) {
+    formRegistro.addEventListener('submit', registrarse);
+}
+
+//////////////obtener ID usuario////////////
+async function obtenerIDporUsuario(usuario) {
+    const respuesta = await fetch(`https://6845ab1afc51878754dbee55.mockapi.io/api/v1/usuarios?usuario=${usuario}`);
+    if (!respuesta.ok) {
+        alert("No se pudo obtener el ID del usuario");
+    }
+    let datos = await respuesta.json();
+    return datos.id;
+}
+
+/////////////cambiar contraseña/////////////
+async function cambiarContrasenia(e) {
+    e.preventDefault();
+
+    let newPass = document.querySelector("#newPass");
+    newPass.innerHTML = `<h5>Usuario: <input type="text" placeholder="usuario"></h5>
+                        <h5>Contraseña actual: <input type="text" placeholder="actual"></h5>
+                        <h5>Nueva contraseña: <input type="text" placeholder="nueva"</h5>
+                        <button id="btn-enviarPass">Enviar</button>`
+
+    document.querySelector("#btn-enviarPass").addEventListener("click", async function () {
+        let usuario = document.querySelector("#usuario").value;
+        let actual = document.querySelector("#actualPass").value;
+        let nueva = document.querySelector("#nuevoPass");
+    })
+
+    try {
+        let res = await fetch(`https://6845ab1afc51878754dbee55.mockapi.io/api/v1/usuarios?usuario=${usuario}`);
+        let data = await res.json();
+
+        if (data.length > 0 && data[0].password === actual) {
+            
+        }
+    } catch (error) {
+
+    }
+
+}
+document.querySelector("#btn-cambiar").addEventListener('click', cambiarContrasena);
 
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     let lista = document.querySelector("#listado");
-//     if (lista) {
-//         lista.innerHTML = `
-//             <tr><td>Producto de prueba 1</td></tr>
-//             <tr><td>Producto de prueba 2</td></tr>
-//         `;
-//     }
-// });
+
+//////////////PUT usuarios//////////////////
+async function actualizar(e) {
+    e.preventDefault();
+}
+document.querySelector("#btn-cambiar").addEventListener('click', actualizar);
