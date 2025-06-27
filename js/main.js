@@ -121,7 +121,7 @@ async function modificarUsuario(e) {
     }
 
     let usuario = {
-        
+
     }
 
     try {
@@ -130,7 +130,7 @@ async function modificarUsuario(e) {
         console.log(error);
         
     }
-
+    document.querySelector("#usuario-modificar").value = "";
 }
 /////////////DELETE personas//////////////////
 async function eliminarUsuario(e) {
@@ -139,7 +139,6 @@ async function eliminarUsuario(e) {
 
     if (!usuarioInput) {
         document.querySelector("#msg").innerHTML = "Ingrese un nombre de usuario";
-        return;
     }
     try {
         // busca usuario por nombre
