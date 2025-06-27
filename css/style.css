@@ -124,7 +124,9 @@ body {
 #btn-cambioPass,
 #btn-cambioTel,
 #btn-cambiar,
-#btn-enviarPass {
+#btn-enviarPass,
+#btn-modifica,
+#btn-elimina-usuario {
     margin: 5px;
     cursor: none;
 }
@@ -307,11 +309,12 @@ footer p {
     #btn-ingreso,
     #btn-registro,
     #btn-elimina,
-    #btn-cambioUsuario,
     #btn-cambioPass,
     #btn-cambioTel,
     #btn-cambiar,
-    #btn-enviarPass {
+    #btn-enviarPass,
+    #btn-modifica,
+    #btn-elimina-usuario {
         cursor: pointer;
     }
 

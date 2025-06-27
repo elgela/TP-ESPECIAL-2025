@@ -52,8 +52,9 @@ cargarReferencia();
 ////////////GET personas///////////////////
 const urlUsuario = "https://6845ab1afc51878754dbee55.mockapi.io/api/v1/usuarios";
 let id = 0;
+let usuarioInput = "";
 
-async function obtenerPersonas() {
+async function obtenerUsuarios() {
     const lista = document.querySelector("#lista_usuarios");
     lista.innerHTML = "";
     try {
@@ -65,17 +66,16 @@ async function obtenerPersonas() {
             let apellido = usuarios.apellido;
             let usuario = usuarios.usuario;
             id = usuarios.id;
-            lista.innerHTML += `<li>${nombre} ${apellido} / ${usuario}</li>`;
+            lista.innerHTML += `<li>${nombre} ${apellido} / Usuario: ${usuario}</li>`;
         }
      
     } catch (error) {
         console.log("Error");
-        
     }
 }
 
 ////////////////POST personas///////////////
-async function enviarPersonas(e) {
+async function enviarUsuario(e) {
     e.preventDefault();
     let nombre = document.querySelector("#nombre").value;
     let apellido = document.querySelector("#apellido").value;
@@ -103,57 +103,88 @@ async function enviarPersonas(e) {
         })
         if(res.status == 201) {
             console.log("usuario creado");
-            obtenerPersonas();
+            obtenerUsuarios();
         }
     } catch(error) {
         console.log(error);
     }
-    document.querySelector("#form-registro").reset();
+    document.querySelector("#form-registro").reset();// resetea los datos ya ingresados en los input del form
 }
 
 /////////////PUT personas//////////////////////
-async function actualizarPersonas(e) {
+async function modificarUsuario(e) {
     e.preventDefault();
+    usuarioInput = document.querySelector("#usuario-modificar").value;
     
+    if (!usuarioInput) {
+        document.querySelector("#msg").innerHTML = "Ingrese nombre de usuario";
+    }
+    // let nombre = document.querySelector("#nombre").value;
+    // let apellido = document.querySelector("#apellido").value;
+    // let telefono = document.querySelector("#telefono").value;
+    // let ciudad = document.querySelector("#ciudad").value;
+    // let usuario = document.querySelector("#usuario").value;
+    // let password = document.querySelector("#password").value;
+
+    // let persona = {
+    //     nombre: nombre,
+    //     apellido: apellido,
+    //     telefono: telefono,
+    //     ciudad: ciudad,
+    //     usuario: usuario,
+    //     password: password
+    // }
+    
+    try {
+        let res = await fetch(`${urlUsuario}/${usuarioInput}`, {
+            "method": "PUT",
+            "headers": {"Content-type": "application/json"},
+            "body": JSON.stringify(persona)
+        });
+        if(res.status === 200) {
+            document.querySelector("#msg").innerHTML = "Modificado!";
+        }
+        document.querySelector("#usuario-modificar").value = "";
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 /////////////DELETE personas//////////////////
-async function eliminarUltimo(e) {
+async function eliminarUsuario(e) {
     e.preventDefault();
-    const usuarioInput = document.querySelector("#usuario-eliminar").value;
+    usuarioInput = document.querySelector("#usuario-eliminar").value;
 
     if (!usuarioInput) {
-        document.querySelector("#msg").innerHTNL = "Ingrese un nombre de usuario";
+        document.querySelector("#msg").innerHTML = "Ingrese un nombre de usuario";
         return;
     }
     try {
-        // se busca usuario por nombre
+        // busca usuario por nombre
         let res = await fetch(`${urlUsuario}?usuario=${usuarioInput}`);
         let data = await res.json();
 
-        if (data.length === 0) {
-            document.querySelector("#msg").innerHTML = "Usuario no encontrado";
-            return;
-        }
         let id = data[0].id;
-        //se elimina usuario por id
+        // elimina usuario por id
         let resDelete = await fetch(`${urlUsuario}/${id}`, {
             "method": "DELETE"
         })
-        if(res.status === 200) {
-            document.querySelector("#msg").innerHTML = "Usuario elimimado!";
-            obtenerPersonas(); //refresca la lista
+        if(resDelete.status === 200) {
+            document.querySelector("#msg").innerHTML = "Usuario eliminado!";
+            obtenerUsuarios(); //refresca la lista
         } else {
-            document.querySelector("#msg").innerHTML = "Error al eliminar";
+            document.querySelector("#msg").innerHTML = "Usuario no encontrado";
         }
+        document.querySelector("#usuario-eliminar").value = "";
     } catch(error) {
         console.log(error);
     }
 }
 
-document.querySelector("#btn-registro").addEventListener("click", enviarPersonas);
-document.querySelector("#btn-elimina-usuario").addEventListener("click", eliminarUltimo);
-obtenerPersonas();
+document.querySelector("#btn-registro").addEventListener("click", enviarUsuario);
+document.querySelector("#btn-modifica").addEventListener("click", modificarUsuario);
+document.querySelector("#btn-elimina-usuario").addEventListener("click", eliminarUsuario);
+obtenerUsuarios();
 
 
 
