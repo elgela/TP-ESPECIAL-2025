@@ -68,7 +68,7 @@ async function obtenerUsuarios() {
             id = usuarios.id;
             lista.innerHTML += `<li>${nombre} ${apellido} / Usuario: ${usuario}</li>`;
         }
-     
+        
     } catch (error) {
         console.log("Error");
     }
@@ -115,41 +115,23 @@ async function enviarUsuario(e) {
 async function modificarUsuario(e) {
     e.preventDefault();
     usuarioInput = document.querySelector("#usuario-modificar").value;
-    
-    if (!usuarioInput) {
-        document.querySelector("#msg").innerHTML = "Ingrese nombre de usuario";
-    }
-    // let nombre = document.querySelector("#nombre").value;
-    // let apellido = document.querySelector("#apellido").value;
-    // let telefono = document.querySelector("#telefono").value;
-    // let ciudad = document.querySelector("#ciudad").value;
-    // let usuario = document.querySelector("#usuario").value;
-    // let password = document.querySelector("#password").value;
 
-    // let persona = {
-    //     nombre: nombre,
-    //     apellido: apellido,
-    //     telefono: telefono,
-    //     ciudad: ciudad,
-    //     usuario: usuario,
-    //     password: password
-    // }
-    
+    if (!usuarioInput) {
+        document.querySelector("#msg").innerHTML = "Ingrese un nombre de usuario";
+    }
+
+    let usuario = {
+        
+    }
+
     try {
-        let res = await fetch(`${urlUsuario}/${usuarioInput}`, {
-            "method": "PUT",
-            "headers": {"Content-type": "application/json"},
-            "body": JSON.stringify(persona)
-        });
-        if(res.status === 200) {
-            document.querySelector("#msg").innerHTML = "Modificado!";
-        }
-        document.querySelector("#usuario-modificar").value = "";
+        
     } catch (error) {
         console.log(error);
+        
     }
-}
 
+}
 /////////////DELETE personas//////////////////
 async function eliminarUsuario(e) {
     e.preventDefault();
