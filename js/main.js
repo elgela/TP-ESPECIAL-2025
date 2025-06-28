@@ -55,7 +55,7 @@ let id = 0;
 let usuarioInput = "";
 
 async function obtenerUsuarios() {
-    const lista = document.querySelector("#lista_usuarios");
+    const lista = document.querySelector("#tabla_usuarios");
     lista.innerHTML = "";
     try {
         let res = await fetch(urlUsuario); //por defecto fetch hace GET al explorador
@@ -66,9 +66,22 @@ async function obtenerUsuarios() {
             let apellido = usuarios.apellido;
             let usuario = usuarios.usuario;
             id = usuarios.id;
-            lista.innerHTML += `<li>${nombre} ${apellido} / Usuario: ${usuario}</li>`;
+            lista.innerHTML += `<tr>
+                                    <td>${nombre}</td>
+                                    <td>${apellido}</td>
+                                    <td>${usuario}</td>
+                                    <td><button type="button" class="btn-modificar" data-id="${id}">Modificar</button><button type="button" class="btn-eliminar" data-id="${id}">Eliminar</button></td>
+                                </tr>`;
         }
-        
+        let botonesEliminar = document.querySelectorAll(".btn-eliminar");
+        for (const boton of botonesEliminar) {
+            boton.addEventListener("click", eliminarUsuario);
+        }
+        let botonesModificar = document.querySelectorAll(".btn-modificar");
+        for (const boton of botonesModificar) {
+            boton.addEventListener("click", modificarUsuario);
+        }
+
     } catch (error) {
         console.log("Error");
     }
@@ -114,40 +127,32 @@ async function enviarUsuario(e) {
 /////////////PUT personas//////////////////////
 async function modificarUsuario(e) {
     e.preventDefault();
-    usuarioInput = document.querySelector("#usuario-modificar").value;
-
-    if (!usuarioInput) {
-        document.querySelector("#msg").innerHTML = "Ingrese un nombre de usuario";
-    }
-
-    let usuario = {
-
-    }
+    let idModificar = this.dataset.id;
 
     try {
-        
+        let resModif = await fetch(`${urlUsuario}/${idModificar}`, {
+            "method": "PUT",
+            "headers": {"Content-type": "application/json"},
+            "body": JSON.stringify(persona)
+        })
+
+        if (resModif.status === 200) {
+            document.querySelector("#msg").innerHTML = "Usuario modificado";
+        }
     } catch (error) {
         console.log(error);
         
     }
-    document.querySelector("#usuario-modificar").value = "";
 }
+// document.querySelector("#btn-modifica").addEventListener("click", modificarUsuario);
+
 /////////////DELETE personas//////////////////
 async function eliminarUsuario(e) {
     e.preventDefault();
-    usuarioInput = document.querySelector("#usuario-eliminar").value;
+    let idEliminar = this.dataset.id;
 
-    if (!usuarioInput) {
-        document.querySelector("#msg").innerHTML = "Ingrese un nombre de usuario";
-    }
     try {
-        // busca usuario por nombre
-        let res = await fetch(`${urlUsuario}?usuario=${usuarioInput}`);
-        let data = await res.json();
-
-        let id = data[0].id;
-        // elimina usuario por id
-        let resDelete = await fetch(`${urlUsuario}/${id}`, {
+        let resDelete = await fetch(`${urlUsuario}/${idEliminar}`, {
             "method": "DELETE"
         })
         if(resDelete.status === 200) {
@@ -163,8 +168,6 @@ async function eliminarUsuario(e) {
 }
 
 document.querySelector("#btn-registro").addEventListener("click", enviarUsuario);
-document.querySelector("#btn-modifica").addEventListener("click", modificarUsuario);
-document.querySelector("#btn-elimina-usuario").addEventListener("click", eliminarUsuario);
 obtenerUsuarios();
 
 
