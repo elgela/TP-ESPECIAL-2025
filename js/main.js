@@ -51,6 +51,7 @@ cargarReferencia();
 
 ////////////GET personas///////////////////
 const urlUsuario = "https://6845ab1afc51878754dbee55.mockapi.io/api/v1/usuarios";
+const formRegistro = document.querySelector("#formRegistro");
 let id = 0;
 let usuarioInput = "";
 
@@ -70,14 +71,14 @@ async function obtenerUsuarios() {
                                     <td>${nombre}</td>
                                     <td>${apellido}</td>
                                     <td>${usuario}</td>
-                                    <td><button type="button" class="btn-modificar" data-id="${id}">Modificar</button><button type="button" class="btn-eliminar" data-id="${id}">Eliminar</button></td>
+                                    <td><button type="button" class="btn-actualizar" data-id="${id}">Modificar</button><button type="button" class="btn-eliminar" data-id="${id}">Eliminar</button></td>
                                 </tr>`;
         }
         let botonesEliminar = document.querySelectorAll(".btn-eliminar");
         for (const boton of botonesEliminar) {
             boton.addEventListener("click", eliminarUsuario);
         }
-        let botonesModificar = document.querySelectorAll(".btn-modificar");
+        let botonesModificar = document.querySelectorAll(".btn-actualizar");
         for (const boton of botonesModificar) {
             boton.addEventListener("click", modificarUsuario);
         }
@@ -87,7 +88,7 @@ async function obtenerUsuarios() {
     }
 }
 
-////////////////POST personas///////////////
+    ////////////////POST personas///////////////
 async function enviarUsuario(e) {
     e.preventDefault();
     let nombre = document.querySelector("#nombre").value;
@@ -123,29 +124,58 @@ async function enviarUsuario(e) {
     }
     document.querySelector("#form-registro").reset();// resetea los datos ya ingresados en los input del form
 }
+document.querySelector("#btn-registro").addEventListener("click", enviarUsuario);
 
 /////////////PUT personas//////////////////////
 async function modificarUsuario(e) {
     e.preventDefault();
+    const formRegistroOriginal = document.querySelector("#form-registro").innerHTML;
     let idModificar = this.dataset.id;
+    let res = await fetch(`${urlUsuario}/${idModificar}`);
+    let usuario = await res.json();
 
-    try {
-        let resModif = await fetch(`${urlUsuario}/${idModificar}`, {
-            "method": "PUT",
-            "headers": {"Content-type": "application/json"},
-            "body": JSON.stringify(persona)
-        })
+    document.querySelector("#form-registro").innerHTML = `
+        <h4>Modificar usuario</h4>
+        <form id="form-modificar">
+            <input type="text" id="nombre" value="${usuario.nombre}" placeholder="Nombre" required>
+            <input type="text" id="apellido" value="${usuario.apellido}" placeholder="Apellido" required>
+            <input type="number" id="telefono" value="${usuario.telefono}" placeholder="Teléfono">
+            <input type="text" id="ciudad" value="${usuario.ciudad}" placeholder="Ciudad">
+            <input type="text" id="usuario" value="${usuario.usuario}" placeholder="Usuario" required>
+            <input type="text" id="password" value="${usuario.password}" placeholder="Contraseña" required>
+            <button type="button" id="btn-guardar">Guardar cambios</button>
+            <button type="button" id="btn-cancelar">Cancelar</button>
+        </form>
+    `;
 
-        if (resModif.status === 200) {
-            document.querySelector("#msg").innerHTML = "Usuario modificado";
-        }
-    } catch (error) {
-        console.log(error);
+    document.querySelector("#btn-cancelar").addEventListener("click", function() {
+        document.querySelector("#form-registro").innerHTML = formRegistroOriginal;
+    })
+    document.querySelector("#btn-guardar").addEventListener("click", async function(e) {
+    e.preventDefault();
         
-    }
+        let persona = {
+            nombre: document.querySelector("#nombre").value,
+            apellido: document.querySelector("#apellido").value,
+            telefono: document.querySelector("#telefono").value,
+            ciudad: document.querySelector("#ciudad").value,
+            usuario: document.querySelector("#usuario").value,
+            password: document.querySelector("#password").value
+        };
+        let resPut = await fetch(`${urlUsuario}/${idModificar}`, {
+            method: "PUT",
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(persona)
+        });
+        if (resPut.status === 200) {
+            document.querySelector("#msg").innerHTML = "Usuario modificado!";
+            obtenerUsuarios();
+            document.querySelector("#form-registro").innerHTML = formRegistroOriginal;
+        } else {
+            document.querySelector("#msg").innerHTML = "Error al modificar usuario";
+        }
+    });
 }
-// document.querySelector("#btn-modifica").addEventListener("click", modificarUsuario);
-
 /////////////DELETE personas//////////////////
 async function eliminarUsuario(e) {
     e.preventDefault();
@@ -161,13 +191,11 @@ async function eliminarUsuario(e) {
         } else {
             document.querySelector("#msg").innerHTML = "Usuario no encontrado";
         }
-        document.querySelector("#usuario-eliminar").value = "";
     } catch(error) {
         console.log(error);
     }
 }
 
-document.querySelector("#btn-registro").addEventListener("click", enviarUsuario);
 obtenerUsuarios();
 
 
