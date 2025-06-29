@@ -24,8 +24,8 @@
         <button class="btn-menu">Menú</button>
         <ul class="menu">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="almacen.html">Almacén</a></li>
-            <li><a href="bazar.html">Bazar</a></li>
+            <li><a href="almacen.html" class="link-almacen">Almacén</a></li>
+            <li><a href="bazar.html" class="link-bazar">Bazar</a></li>
         </ul>
     </nav>
 
@@ -78,34 +78,32 @@
                 <form action="" method="post" id="form-registro">
                     <h4>Registrese</h4>
                     <div>
-                        <label for="nombre">Nombre</label>
+                        <label for="nombre">Nombre <span class="requerido">*</span></label>
                         <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
                     </div>
                     <div>
-                        <label for="apellido">Apellido</label>
+                        <label for="apellido">Apellido <span class="requerido">*</span></label>
                         <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
                     </div>
                     <div>
-                        <label for="telefono">Teléfono</label>
-                        <input type="number" name="telefono" id="telefono" placeholder="Teléfono">
+                        <label for="telefono">Teléfono <span class="requerido">*</span></label>
+                        <input type="number" name="telefono" id="telefono" placeholder="Teléfono" required>
                     </div>
                     <div>
                         <label for="ciudad">Ciudad</label>
                         <input type="text" name="ciudad" id="ciudad" placeholder="Ciudad">
                     </div>
                     <div>
-                        <label for="usuario">Usuario</label>
+                        <label for="usuario">Usuario <span class="requerido">*</span></label>
                         <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
                     </div>
                     <div>
-                        <label for="password">Contraseña</label>
+                        <label for="password">Contraseña <span class="requerido">*</span></label>
                         <input type="text" name="password" id="password" placeholder="Contraseña" required>
-                        <!-- <button type="button" id="btn-cambiar">Cambiar</button>click aquí para cambiar -->
+                        
                     </div>
                     <button type="button" id="btn-registro">Registrar</button>
-                    <!-- <button type="button" id="btn-modificar">Modificar</button> -->
-                    <!-- <button type="submit" id="btn-elimina">Eliminar</button> -->
-                    <!-- <h6>Para modificar datos ingrese su nombre de usuario: <input type="text" name="" id=""> y presione <input type="button" value="Modificar" id="btn-modificar" style="cursor: pointer;"></h6> -->
+                    <label><span class="requerido">* de ingreso obligatorio</span></label>
                 </form>
                 <p id="msg"></p>
                 <h4>Usuarios registrados</h4>
@@ -122,10 +120,6 @@
                         
                     </tbody>
                 </table>
-                <!-- <input type="text" id="usuario-eliminar" placeholder="Usuario a eliminar">
-                <button type="button" id="btn-elimina-usuario">Eliminar usuario</button>
-                <input type="text" id="usuario-modificar" placeholder="Usuario a modificar">
-                <button type="button" id="btn-modifica">Modificar usuario</button> -->
             </section>
         </article>
     </main>
@@ -134,8 +128,8 @@
         <a href="index.html"><img src="./images/logo.png" alt="logo de comida y bazar" class="logo"></a>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="almacen.html">Almacén</a></li>
-            <li><a href="bazar.html">Bazar</a></li>
+            <li><a href="almacen.html" class="link-almacen">Almacén</a></li>
+            <li><a href="bazar.html" class="link-bazar">Bazar</a></li>
         </ul>
         <p>Bazaar&#169 2025</p>
     </footer>

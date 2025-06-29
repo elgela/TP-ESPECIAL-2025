@@ -60,12 +60,17 @@ body {
     font-size: x-large;
 }
 
-#login-muestras>h2 {
+#login-muestras > h2 {
     /* h2 hijo directo de #login-muestras */
     font-size: large;
     text-align: center;
     color: brown;
     margin: 50px 0 -30px 0;
+}
+
+.login {
+    padding: 20px;
+    text-align: center;
 }
 
 .muestras {
@@ -100,10 +105,6 @@ body {
     width: 100%;
 }
 
-#registro {
-    margin: 10px;
-}
-
 .descuentos h3,
 .promo h3,
 .carrito h3,
@@ -112,31 +113,18 @@ body {
     text-align: center;
 }
 
-.login {
-    padding: 20px;
-    text-align: center;
+#registro {
+    margin: 10px;
 }
 
 #btn-ingreso,
 #btn-registro,
-#btn-elimina,
-#btn-cambioUsuario,
-#btn-cambioPass,
-#btn-cambioTel,
-#btn-cambiar,
-#btn-enviarPass,
-#btn-modifica,
-#btn-elimina-usuario {
+#btn-guardar,
+#btn-cancelar,
+.btn-actualizar,
+.btn-eliminar {
     margin: 5px;
     cursor: none;
-}
-
-.btn-agregar,
-.btn-modif,
-.btn-delete {
-    width: auto;
-    cursor: none;
-    padding: 0;
 }
 
 table {
@@ -175,7 +163,7 @@ td {
     flex-direction: column;
 }
 
-.destacado>h2 {
+.destacado > h2 {
     text-align: center;
 }
 
@@ -275,7 +263,7 @@ footer p {
         grid-template-columns: 1fr 1fr;
     }
 
-    #login-muestras>h2 {
+    #login-muestras > h2 {
         display: none;
     }
 
@@ -295,26 +283,16 @@ footer p {
     }
 
     #descuentos-promo {
-        /* width: 100%; */
         flex-direction: row;
         justify-content: space-around;
     }
 
-    .btn-agregar,
-    .btn-modif,
-    .btn-delete {
-        cursor: pointer;
-    }
-
     #btn-ingreso,
     #btn-registro,
-    #btn-elimina,
-    #btn-cambioPass,
-    #btn-cambioTel,
-    #btn-cambiar,
-    #btn-enviarPass,
-    #btn-modifica,
-    #btn-elimina-usuario {
+    #btn-guardar,
+    #btn-cancelar,
+    .btn-actualizar,
+    .btn-eliminar {
         cursor: pointer;
     }
 
@@ -356,6 +334,11 @@ footer p {
     #tabla-productos {
         width: 100%;
         margin: 0;
+    }
+
+    .requerido {
+        color: red;
+        font-weight: bold;
     }
 
     /***********fin content*****************/
